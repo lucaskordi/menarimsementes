@@ -36,8 +36,7 @@ export const ParceirosSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="relative w-24 md:w-32 lg:w-40 h-16 md:h-20 lg:h-24 group"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              whileHover={{ scale: 1.1, transition: { duration: 0.2, ease: "easeOut" } }}
             >
               <Image
                 src={parceiro.image}
