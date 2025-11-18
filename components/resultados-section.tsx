@@ -29,8 +29,13 @@ const imageSources = [
   "/sobrep01.webp",
 ];
 
-const createItems = () => {
-  const items = [];
+type CarouselItem = {
+  type: "text" | "image";
+  content: string;
+};
+
+const createItems = (): CarouselItem[] => {
+  const items: CarouselItem[] = [];
   words.forEach((word, index) => {
     items.push({ type: "text", content: word });
     if (imageSources[index % imageSources.length]) {
