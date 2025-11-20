@@ -97,6 +97,88 @@ export const PortfolioSection = () => {
                   {!isMobile && (
                     <div className="absolute inset-0 bg-[#16323d]/10 z-0 transition-opacity duration-500 ease-in-out"></div>
                   )}
+                  <div className="absolute inset-0 z-[5]">
+                    {isSoja && (
+                      <div className="relative w-full h-full">
+                        <Image
+                          src="/sojabg.webp"
+                          alt="Soja background"
+                          fill
+                          className={`object-cover object-center transition-all duration-500 blur-[2px] ${
+                            isMobile 
+                              ? "opacity-10 mix-blend-multiply" 
+                              : hoveredSoja 
+                                ? "opacity-10 mix-blend-multiply" 
+                                : "opacity-100"
+                          }`}
+                          style={!isMobile && !hoveredSoja ? {
+                            maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                          } : {}}
+                        />
+                      </div>
+                    )}
+                    {isTrigo && (
+                      <div className="relative w-full h-full">
+                        <Image
+                          src="/trigobg.webp"
+                          alt="Trigo background"
+                          fill
+                          className={`object-cover object-center transition-all duration-500 blur-[2px] ${
+                            isMobile 
+                              ? "opacity-10 mix-blend-multiply" 
+                              : hoveredTrigo 
+                                ? "opacity-10 mix-blend-multiply" 
+                                : "opacity-100"
+                          }`}
+                          style={!isMobile && !hoveredTrigo ? {
+                            maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                          } : {}}
+                        />
+                      </div>
+                    )}
+                    {isFeijao && (
+                      <div className="relative w-full h-full">
+                        <Image
+                          src="/feijaobg.webp"
+                          alt="Feijão background"
+                          fill
+                          className={`object-cover object-center transition-all duration-500 blur-[2px] ${
+                            isMobile 
+                              ? "opacity-10 mix-blend-multiply" 
+                              : hoveredFeijao 
+                                ? "opacity-10 mix-blend-multiply" 
+                                : "opacity-100"
+                          }`}
+                          style={!isMobile && !hoveredFeijao ? {
+                            maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                          } : {}}
+                        />
+                      </div>
+                    )}
+                    {isForrageiras && (
+                      <div className="relative w-full h-full">
+                        <Image
+                          src="/ervilhabg.webp"
+                          alt="Forrageiras background"
+                          fill
+                          className={`object-cover object-center transition-all duration-500 blur-[2px] ${
+                            isMobile 
+                              ? "opacity-10 mix-blend-multiply" 
+                              : hoveredForrageiras 
+                                ? "opacity-10 mix-blend-multiply" 
+                                : "opacity-100"
+                          }`}
+                          style={!isMobile && !hoveredForrageiras ? {
+                            maskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                            WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%)",
+                          } : {}}
+                        />
+                      </div>
+                    )}
+                  </div>
                   <div className="absolute inset-0 z-10">
                     <Image
                       src={item.image}
@@ -110,19 +192,10 @@ export const PortfolioSection = () => {
                       <h3 className={`text-4xl md:text-3xl lg:text-4xl font-bold mb-4 transition-colors duration-500 ease-in-out ${isMobile || (isFeijao && hoveredFeijao) || (isSoja && hoveredSoja) || (isTrigo && hoveredTrigo) || (isForrageiras && hoveredForrageiras) ? "text-white" : "text-[#16323d]"}`}>
                         {item.title}
                       </h3>
-                      {!isMobile && (
-                        <motion.div
-                          initial={false}
-                          animate={{
-                            opacity: (isFeijao && hoveredFeijao) || (isSoja && hoveredSoja) || (isTrigo && hoveredTrigo) || (isForrageiras && hoveredForrageiras) ? 0 : 1,
-                            height: (isFeijao && hoveredFeijao) || (isSoja && hoveredSoja) || (isTrigo && hoveredTrigo) || (isForrageiras && hoveredForrageiras) ? 0 : 'auto',
-                            marginBottom: (isFeijao && hoveredFeijao) || (isSoja && hoveredSoja) || (isTrigo && hoveredTrigo) || (isForrageiras && hoveredForrageiras) ? 0 : 16,
-                          }}
-                          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                          className="bg-[#d5b14f] px-2 py-1 rounded inline-block w-fit overflow-hidden"
-                        >
+                      {!isMobile && !((isFeijao && hoveredFeijao) || (isSoja && hoveredSoja) || (isTrigo && hoveredTrigo) || (isForrageiras && hoveredForrageiras)) && (
+                        <div className="bg-[#d5b14f] px-2 py-1 rounded inline-block w-fit mb-4 relative z-10">
                           <span className="text-white text-xs font-semibold whitespace-nowrap">Passe o Mouse</span>
-                        </motion.div>
+                        </div>
                       )}
                     </div>
                     {isSoja && (isMobile || hoveredSoja) && (
@@ -130,7 +203,7 @@ export const PortfolioSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
-                        className="flex-1 flex flex-col justify-center items-center w-full"
+                        className="flex-1 flex flex-col justify-center items-center w-full relative z-30"
                       >
                         <div className="space-y-2 mb-6 w-full max-w-md">
                           <ul className="space-y-2 text-sm md:text-base leading-relaxed drop-shadow-lg list-none">
@@ -179,7 +252,7 @@ export const PortfolioSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
-                        className="flex-1 flex flex-col justify-center items-center w-full"
+                        className="flex-1 flex flex-col justify-center items-center w-full relative z-30"
                       >
                         <div className="space-y-2 mb-6 w-full max-w-md">
                           <ul className="space-y-2 text-sm md:text-base leading-relaxed drop-shadow-lg list-none">
@@ -229,7 +302,7 @@ export const PortfolioSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
-                        className="flex-1 flex flex-col justify-center items-center w-full"
+                        className="flex-1 flex flex-col justify-center items-center w-full relative z-30"
                       >
                         <div className="space-y-4 mb-6 w-full max-w-md">
                           <div className="space-y-2">
@@ -278,7 +351,7 @@ export const PortfolioSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
-                        className="flex-1 flex flex-col justify-center items-center w-full"
+                        className="flex-1 flex flex-col justify-center items-center w-full relative z-30"
                       >
                         <div className="space-y-2 mb-6 w-full max-w-md">
                           <ul className="space-y-2 text-sm md:text-base leading-relaxed drop-shadow-lg list-none">
