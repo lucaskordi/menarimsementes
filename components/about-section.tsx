@@ -103,7 +103,6 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
             className="relative h-[350px] md:h-[400px] -mt-16 md:mt-0 z-30"
           >
             <div className="relative h-full flex items-center">
