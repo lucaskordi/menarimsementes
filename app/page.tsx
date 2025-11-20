@@ -12,9 +12,9 @@ import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Header />
-      <main>
+      <main className="overflow-x-hidden">
         <HeroCarousel />
         <AboutSection />
         <PortfolioSection />

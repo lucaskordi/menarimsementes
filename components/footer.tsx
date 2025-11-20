@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   "Início",
@@ -52,13 +53,24 @@ const getSectionId = (label: string) =>
     .replace(/\s+/g, "-");
 
 export const Footer = () => {
+  const pathname = usePathname();
+  const isTrabalheConoscoPage = pathname === "/trabalhe-conosco";
+
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (isTrabalheConoscoPage) {
+      window.location.href = "/";
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
 const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    if (isTrabalheConoscoPage && href !== "#trabalhe-conosco") {
+      window.location.href = href;
+      return;
+    }
   if (href === "#início" || href === "#inicio" || href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -90,6 +102,10 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
           <nav className="flex flex-col gap-2 items-center text-center">
             {menuItems.map((item) => {
               const sectionId = getSectionId(item);
+              let href = item === "Trabalhe Conosco" ? "/trabalhe-conosco" : `#${sectionId}`;
+              if (isTrabalheConoscoPage && item !== "Trabalhe Conosco") {
+                href = `/#${sectionId}`;
+              }
               return (
               <motion.div
                 key={item}
@@ -103,9 +119,19 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
                 transition={{ duration: 0.3 }}
               >
                 <Link
-                  href={`#${sectionId}`}
+                  href={href}
                     className="text-white text-sm cursor-pointer block text-center"
-                  onClick={(e) => handleMenuClick(e, `#${sectionId}`)}
+                  onClick={(e) => {
+                    if (item === "Trabalhe Conosco") {
+                      return;
+                    }
+                    if (isTrabalheConoscoPage && item !== "Trabalhe Conosco") {
+                      e.preventDefault();
+                      window.location.href = `/#${sectionId}`;
+                      return;
+                    }
+                    handleMenuClick(e, `#${sectionId}`);
+                  }}
                 >
                   {item}
                 </Link>
@@ -127,6 +153,11 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
               className="px-6 py-2 bg-[#d5b14f] text-white rounded-md font-medium text-sm whitespace-nowrap hover:bg-white hover:text-[#16323d] hover:shadow-lg transition-all duration-500"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                if (isTrabalheConoscoPage) {
+                  window.location.href = "/";
+                }
+              }}
             >
               Compre Agora
             </motion.button>

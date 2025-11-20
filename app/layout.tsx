@@ -25,7 +25,7 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   title: "Menarim Sementes",
-  description: "Menarim Sementes",
+  description: "A Força da Terra em Cada Semente.",
 };
 
 export default function RootLayout({
@@ -34,9 +34,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${rethinkSans.variable} ${lato.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${rethinkSans.variable} ${lato.variable} antialiased overflow-x-hidden`}
+        suppressHydrationWarning={true}
       >
         {children}
       </body>

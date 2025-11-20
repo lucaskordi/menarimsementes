@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence, useAnimationFrame } from "framer-motion";
 
 const historyItems = [
   {
@@ -42,9 +42,29 @@ export const AboutSection = () => {
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const exitDirectionRef = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const time = useMotionValue(0);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      // Detecta mobile e tablets (iPad inclusive)
+      if (typeof window === 'undefined') return;
+      const width = window.innerWidth;
+      // iPad reporta 768px ou 1024px, tablets em geral < 1024px
+      // Inclui explicitamente 768px que é o iPad padrão
+      setIsMobile(width < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    window.addEventListener('orientationchange', checkMobile);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('orientationchange', checkMobile);
+    };
+  }, []);
 
   const springConfig = { damping: 25, stiffness: 200 };
 
@@ -53,6 +73,16 @@ export const AboutSection = () => {
   
   const x2 = useSpring(useTransform(mouseX, (value) => value * -0.02), springConfig);
   const y2 = useSpring(useTransform(mouseY, (value) => value * -0.02), springConfig);
+
+  // Animação de onda cossenoidal para mobile
+  const cosineX1 = useTransform(time, (t) => Math.cos(t * 0.3) * 15);
+  const cosineY1 = useTransform(time, (t) => Math.sin(t * 0.3) * 10 - 120);
+  const cosineX2 = useTransform(time, (t) => Math.cos(t * 0.35 + Math.PI / 2) * 15);
+  const cosineY2 = useTransform(time, (t) => Math.sin(t * 0.35 + Math.PI / 2) * 10 - 120);
+
+  useAnimationFrame((t, delta) => {
+    time.set(time.get() + delta * 0.001);
+  });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -90,7 +120,7 @@ export const AboutSection = () => {
   };
 
   return (
-    <section id="sobre" className="bg-[#6B7D6B] py-20 md:py-32">
+    <section id="sobre" className="bg-[#6B7D6B] py-20 md:py-32 pb-0 md:pb-32">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
           <motion.div
@@ -105,7 +135,7 @@ export const AboutSection = () => {
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Tecnologia e Compromisso que Transpassam Gerações
+              28 Anos de Tecnologia e Compromisso com o Agricultor
             </h2>
           </motion.div>
 
@@ -114,7 +144,7 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative h-[350px] md:h-[400px]"
+            className="relative h-[350px] md:h-[400px] -mt-16 md:mt-0 z-30"
           >
             <div className="relative h-full flex items-center">
               <div className="absolute -left-8 top-0 bottom-0 w-8">
@@ -158,10 +188,10 @@ export const AboutSection = () => {
               </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-4">
+            <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-4 z-30 pointer-events-auto">
               <motion.button
                 onClick={goToPreviousHistory}
-                className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+                className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors pointer-events-auto"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Anterior"
@@ -171,12 +201,12 @@ export const AboutSection = () => {
                 </svg>
               </motion.button>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 pointer-events-auto">
                 {historyItems.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToHistory(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
+                    className={`w-2 h-2 rounded-full transition-all pointer-events-auto ${
                       index === currentHistoryIndex
                         ? "bg-[#d5b14f] w-8"
                         : "bg-white/50 hover:bg-white/70"
@@ -188,7 +218,7 @@ export const AboutSection = () => {
 
               <motion.button
                 onClick={goToNextHistory}
-                className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+                className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors pointer-events-auto"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Próximo"
@@ -206,7 +236,7 @@ export const AboutSection = () => {
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative w-screen h-[500px] md:h-[600px] mt-16 overflow-hidden left-1/2 -translate-x-1/2"
+        className="relative w-full md:w-screen h-[500px] md:h-[600px] mt-16 -mt-32 md:mt-16 mb-[-220px] md:mb-0 overflow-visible md:overflow-hidden left-0 md:left-1/2 md:-translate-x-1/2 z-0"
       >
         <div className="absolute inset-0 z-0 flex items-start overflow-hidden pt-0">
           <motion.div
@@ -255,10 +285,13 @@ export const AboutSection = () => {
         </div>
 
         <motion.div
-          style={{ x: x1, y: y1 }}
+          style={{ 
+            x: isMobile ? cosineX1 : x1,
+            y: isMobile ? cosineY1 : y1
+          }}
           className="absolute inset-0 z-10"
         >
-          <div className="relative w-full h-full">
+          <div className="relative w-full h-full scale-150 md:scale-100">
             <Image
               src="/sobrep01.webp"
               alt="Sobre imagem 1"
@@ -270,10 +303,13 @@ export const AboutSection = () => {
         </motion.div>
         
         <motion.div
-          style={{ x: x2, y: y2 }}
+          style={{ 
+            x: isMobile ? cosineX2 : x2,
+            y: isMobile ? cosineY2 : y2
+          }}
           className="absolute inset-0 z-20"
         >
-          <div className="relative w-full h-full">
+          <div className="relative w-full h-full scale-150 md:scale-100">
             <Image
               src="/sobrep2.webp"
               alt="Sobre imagem 2"

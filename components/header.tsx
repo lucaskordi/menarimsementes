@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   "Início",
@@ -25,6 +26,7 @@ const lightSectionIds = [
 ];
 
 export const Header = () => {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -42,14 +44,13 @@ export const Header = () => {
         setIsScrolled(false);
       }
 
-      if (currentScrollY < lastScrollY || currentScrollY < 50) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      }
-
       const headerHeight = currentScrollY > 100 ? 90 : 110;
-      if (window.innerWidth >= 768) {
+      const width = window.innerWidth;
+      const isTrabalheConoscoPage = pathname === "/trabalhe-conosco";
+      
+      if (isTrabalheConoscoPage) {
+        setIsOverWhite(true);
+      } else if (width >= 1024) {
         let overLightSection = false;
         for (const id of lightSectionIds) {
           const section = document.getElementById(id);
@@ -75,7 +76,11 @@ export const Header = () => {
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (pathname === "/trabalhe-conosco" || pathname !== "/") {
+      window.location.href = "/";
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
 const getSectionId = (label: string) =>
@@ -89,6 +94,8 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
     e.preventDefault();
   if (href === "#início" || href === "#inicio" || href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (href === "#trabalhe-conosco") {
+      window.location.href = "/trabalhe-conosco";
     } else {
       const element = document.querySelector(href);
       if (element) {
@@ -99,7 +106,12 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 768;
+      // Detecta mobile e tablets (iPad inclusive)
+      if (typeof window === 'undefined') return;
+      const width = window.innerWidth;
+      // iPad reporta 768px ou 1024px, tablets em geral < 1024px
+      // Inclui explicitamente 768px que é o iPad padrão
+      const mobile = width < 1024;
       setIsMobile(mobile);
       if (!mobile) {
         setIsMenuOpen(false);
@@ -108,7 +120,11 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
 
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
+    };
   }, []);
 
   const handleMenuSelection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -165,12 +181,6 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
   return (
     <>
     <motion.header
-      animate={{ y: isVisible ? 0 : -120 }}
-      transition={{ 
-        duration: 0.4, 
-        ease: [0.25, 0.1, 0.25, 1],
-        type: "tween"
-      }}
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-[70] backdrop-blur-md rounded-2xl shadow-lg transition-all duration-300 ease-in-out w-[90%] max-w-7xl ${
         isScrolled ? "py-2" : "py-3"
       } ${
@@ -178,6 +188,9 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
           ? "bg-[#16323d]/30 border border-[#16323d]/40" 
           : "bg-white/10 border border-white/20"
       }`}
+      style={{
+        color: 'white'
+      }}
     >
           <div className="px-4 flex items-center justify-between gap-4">
             <div className="flex items-center">
@@ -186,9 +199,9 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
                   <Image
                     src="/Logo.png"
                     alt="Logo"
-                    width={120}
-                    height={60}
-                    className="h-auto"
+                    width={180}
+                    height={90}
+                    className="h-auto w-[140px] md:w-[180px]"
                     priority
                   />
                 </motion.div>
@@ -198,6 +211,11 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
             <nav className="hidden md:flex items-center gap-6">
               {menuItems.map((item) => {
                 const sectionId = getSectionId(item);
+                const isTrabalheConoscoPage = pathname === "/trabalhe-conosco";
+                let href = item === "Trabalhe Conosco" ? "/trabalhe-conosco" : `#${sectionId}`;
+                if (isTrabalheConoscoPage && item !== "Trabalhe Conosco") {
+                  href = `/#${sectionId}`;
+                }
                 return (
                 <motion.div
                   key={item}
@@ -211,9 +229,19 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
                   transition={{ duration: 0.3 }}
                 >
                   <Link
-                    href={`#${sectionId}`}
+                    href={href}
                     className="text-white text-base font-medium cursor-pointer block"
-                    onClick={(e) => handleMenuClick(e, `#${sectionId}`)}
+                    onClick={(e) => {
+                      if (item === "Trabalhe Conosco") {
+                        return;
+                      }
+                      if (isTrabalheConoscoPage) {
+                        e.preventDefault();
+                        window.location.href = `/#${sectionId}`;
+                        return;
+                      }
+                      handleMenuClick(e, `#${sectionId}`);
+                    }}
                   >
                     {item}
                   </Link>
@@ -235,6 +263,11 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
                 className="hidden md:block px-5 py-2 bg-[#d5b14f] text-white rounded-md font-medium text-base whitespace-nowrap hover:bg-[#16323d] hover:text-white hover:shadow-lg transition-all duration-500"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  if (pathname === "/trabalhe-conosco") {
+                    window.location.href = "/";
+                  }
+                }}
               >
                 Compre Agora
               </motion.button>
@@ -267,11 +300,28 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
               >
                   {menuItems.map((item) => {
                     const sectionId = getSectionId(item);
+                    const isTrabalheConoscoPage = pathname === "/trabalhe-conosco";
+                    let href = item === "Trabalhe Conosco" ? "/trabalhe-conosco" : `#${sectionId}`;
+                    if (isTrabalheConoscoPage && item !== "Trabalhe Conosco") {
+                      href = `/#${sectionId}`;
+                    }
                     return (
                     <li key={`mobile-${item}`}>
                       <Link
-                        href={`#${sectionId}`}
-                        onClick={(e) => handleMenuSelection(e, `#${sectionId}`)}
+                        href={href}
+                        onClick={(e) => {
+                          if (item === "Trabalhe Conosco") {
+                            setIsMenuOpen(false);
+                            return;
+                          }
+                          if (isTrabalheConoscoPage) {
+                            e.preventDefault();
+                            setIsMenuOpen(false);
+                            window.location.href = `/#${sectionId}`;
+                            return;
+                          }
+                          handleMenuSelection(e, `#${sectionId}`);
+                        }}
                         className="hover:text-[#d5b14f] transition-colors"
                       >
                         {item}
@@ -292,7 +342,7 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
 
                 <Link href="/" onClick={(e) => { handleLogoClick(e); setIsMenuOpen(false); }}>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Image src="/Logo.png" alt="Logo" width={100} height={50} />
+                    <Image src="/Logo.png" alt="Logo" width={150} height={75} />
                   </motion.div>
                 </Link>
             </motion.div>

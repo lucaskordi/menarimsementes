@@ -6,9 +6,13 @@ import { motion } from "framer-motion";
 const parceiros = [
   { name: "Embrapa", image: "/embrapa.png" },
   { name: "Biotrigo", image: "/biotrigo.webp" },
-  { name: "Lapar", image: "/lapar.webp" },
+  { name: "IDR", image: "/idr.png" },
   { name: "OR", image: "/or.png" },
   { name: "Bayer", image: "/bayer.png" },
+  { name: "Basfat", image: "/basfat.webp" },
+  { name: "BIOSP", image: "/biosp.png" },
+  { name: "Biotrop", image: "/biotrop.png" },
+  { name: "ICL", image: "/icl.png" },
 ];
 
 export const ParceirosSection = () => {
@@ -42,7 +46,7 @@ export const ParceirosSection = () => {
                 src={parceiro.image}
                 alt={parceiro.name}
                 fill
-                className="object-contain saturate-0 group-hover:saturate-100 transition-all duration-300"
+                className="object-contain saturate-100 md:saturate-0 md:group-hover:saturate-100 transition-all duration-300"
                 sizes="(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px"
               />
             </motion.div>

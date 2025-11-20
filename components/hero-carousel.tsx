@@ -7,18 +7,18 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const heroContent = [
   {
     image: "/hero1.webp",
-    title: "Lorem ipsum dolor sit amet",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere sapien eget leo porta, non lacinia ligula luctus.",
+    title: "Tradição e Compromisso com a Qualidade",
+    description: "Com 28 anos de experiência no mercado agrícola, cultivamos sementes de excelência que representam o melhor da tradição rural aliado à tecnologia moderna. Nossa dedicação à qualidade garante resultados superiores em cada safra.",
   },
   {
     image: "/hero2.webp",
-    title: "Curabitur vitae nunc sed velit",
-    description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.",
+    title: "Tecnologia e Inovação com TSI e Barracão Refrigerado",
+    description: "Utilizamos Tecnologia de Sementes de Inoculação (TSI) de última geração e contamos com barracão refrigerado para garantir a preservação ideal das sementes. Nossa infraestrutura tecnológica assegura máxima qualidade e germinação em todos os lotes.",
   },
   {
     image: "/hero3.webp",
-    title: "Suspendisse potenti vestibulum",
-    description: "Ut enim ad minima veniam quis nostrum exercitationem ullam corporis suscipit laboriosam nisi ut aliquid ex ea commodi consequatur.",
+    title: "Desde o campo até o cliente agricultor",
+    description: "Acompanhamos todo o processo, desde o cultivo nas melhores áreas de produção até a entrega nas mãos do agricultor. Nossa dedicação em cada etapa garante que as sementes cheguem com a qualidade e o potencial produtivo que você precisa para alcançar resultados excepcionais na sua lavoura.",
   },
 ];
 
@@ -119,9 +119,9 @@ export const HeroCarousel = () => {
                     delay: 0.3,
                     ease: "easeOut"
                   }}
-                  className="text-right"
+                  className="text-left md:text-right"
                 >
-                  <p className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed max-w-lg ml-auto">
+                  <p className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed max-w-lg md:ml-auto">
                     {content.description}
                   </p>
                 </motion.div>
@@ -134,7 +134,7 @@ export const HeroCarousel = () => {
 
       <motion.button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
+        className="absolute left-4 bottom-20 md:left-8 md:top-1/2 md:-translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         aria-label="Slide anterior"
@@ -156,7 +156,7 @@ export const HeroCarousel = () => {
 
       <motion.button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
+        className="absolute right-4 bottom-20 md:right-8 md:top-1/2 md:-translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white w-12 h-12 rounded-full flex items-center justify-center transition-colors"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         aria-label="Próximo slide"
