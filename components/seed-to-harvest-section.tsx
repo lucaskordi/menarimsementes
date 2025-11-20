@@ -77,15 +77,16 @@ export const SeedToHarvestSection = () => {
               initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: isMobile ? 0.3 : 0.6 }}
               onHoverStart={() => setHoveredCard(0)}
               onHoverEnd={() => setHoveredCard(null)}
               animate={{
+                opacity: 1,
+                y: 0,
                 flex: hoveredCard === 0 ? 2 : hoveredCard === 1 ? 0.5 : 1,
               }}
               transition={{
-                opacity: { duration: 0.6, delay: 0.1 },
-                y: { duration: 0.6, delay: 0.1 },
+                opacity: { duration: isMobile ? 0.3 : 0.6 },
+                y: { duration: isMobile ? 0.3 : 0.6 },
                 flex: { duration: 0.5, ease: "easeInOut" },
               }}
               className="min-h-[400px] md:h-64 md:min-h-0 md:h-80 rounded-2xl bg-[#16323d] flex items-center justify-center relative overflow-hidden"
@@ -134,15 +135,16 @@ export const SeedToHarvestSection = () => {
               initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: isMobile ? 0.3 : 0.6 }}
               onHoverStart={() => setHoveredCard(1)}
               onHoverEnd={() => setHoveredCard(null)}
               animate={{
+                opacity: 1,
+                y: 0,
                 flex: hoveredCard === 1 ? 2 : hoveredCard === 0 ? 0.5 : 1,
               }}
               transition={{
-                opacity: { duration: 0.6, delay: 0.2 },
-                y: { duration: 0.6, delay: 0.2 },
+                opacity: { duration: isMobile ? 0.3 : 0.6 },
+                y: { duration: isMobile ? 0.3 : 0.6 },
                 flex: { duration: 0.5, ease: "easeInOut" },
               }}
               className="min-h-[400px] md:h-64 md:min-h-0 md:h-80 rounded-2xl bg-[#d5b14f] flex items-center justify-center relative overflow-hidden"
