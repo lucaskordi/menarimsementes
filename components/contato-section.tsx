@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, ReactNode } from "react";
+import { FormEvent, ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 
 interface ContactCard {
@@ -12,8 +12,41 @@ interface ContactCard {
 }
 
 export const ContatoSection = () => {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const message = formData.get("message") as string;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, phone, message }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        (event.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar mensagem:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -86,6 +119,7 @@ export const ContatoSection = () => {
                 <label className="text-sm font-medium text-[#16323d]">Seu Nome *</label>
                 <input
                   type="text"
+                  name="name"
                   required
                   className="w-full border-b border-gray-300 bg-transparent py-3 text-[#16323d] placeholder-gray-400 focus:border-[#16323d] focus:outline-none"
                   placeholder="Digite seu nome"
@@ -95,6 +129,7 @@ export const ContatoSection = () => {
                 <label className="text-sm font-medium text-[#16323d]">Seu E-mail *</label>
                 <input
                   type="email"
+                  name="email"
                   required
                   className="w-full border-b border-gray-300 bg-transparent py-3 text-[#16323d] placeholder-gray-400 focus:border-[#16323d] focus:outline-none"
                   placeholder="email@exemplo.com"
@@ -104,6 +139,7 @@ export const ContatoSection = () => {
                 <label className="text-sm font-medium text-[#16323d]">Seu Telefone</label>
                 <input
                   type="tel"
+                  name="phone"
                   className="w-full border-b border-gray-300 bg-transparent py-3 text-[#16323d] placeholder-gray-400 focus:border-[#16323d] focus:outline-none"
                   placeholder="+55 (00) 00000-0000"
                 />
@@ -111,17 +147,29 @@ export const ContatoSection = () => {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-[#16323d]">Sua Mensagem *</label>
                 <textarea
+                  name="message"
                   required
                   rows={4}
                   className="w-full border border-gray-200 bg-transparent rounded-2xl p-4 text-[#16323d] placeholder-gray-400 focus:border-[#16323d] focus:outline-none"
                   placeholder="Conte-nos como podemos ajudar"
                 />
               </div>
+              {submitStatus === "success" && (
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
+                  Mensagem enviada com sucesso! Entraremos em contato em breve.
+                </div>
+              )}
+              {submitStatus === "error" && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                  Erro ao enviar mensagem. Tente novamente.
+                </div>
+              )}
               <motion.button
                 type="submit"
-                className="px-6 py-3 bg-[#d5b14f] text-white rounded-md font-semibold shadow-md hover:bg-[#16323d] hover:text-white hover:shadow-lg transition-all duration-500"
+                disabled={isSubmitting}
+                className="px-6 py-3 bg-[#d5b14f] text-white rounded-md font-semibold shadow-md hover:bg-[#16323d] hover:text-white hover:shadow-lg transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar mensagem
+                {isSubmitting ? "Enviando..." : "Enviar mensagem"}
               </motion.button>
             </form>
           </motion.div>

@@ -1,0 +1,8 @@
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=menarim.nao.responda@gmail.com
+SMTP_PASS=lmwapaojecvfonf
+SMTP_FROM=menarim.nao.responda@gmail.com
+CONTACT_EMAIL=contato@menarimsementes.com.br
+CAREERS_EMAIL=contato@menarimsementes.com.br

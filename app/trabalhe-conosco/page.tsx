@@ -55,19 +55,26 @@ export default function TrabalheConoscoPage() {
         formDataToSend.append("curriculo", file);
       }
 
-      console.log("Formulário enviado:", formData, file);
-      alert("Mensagem enviada com sucesso! Entraremos em contato em breve.");
-      
-      setFormData({
-        nome: "",
-        email: "",
-        telefone: "",
-        mensagem: "",
+      const response = await fetch("/api/trabalhe-conosco", {
+        method: "POST",
+        body: formDataToSend,
       });
-      setFile(null);
+
+      if (response.ok) {
+        alert("Candidatura enviada com sucesso! Entraremos em contato em breve.");
+        setFormData({
+          nome: "",
+          email: "",
+          telefone: "",
+          mensagem: "",
+        });
+        setFile(null);
+      } else {
+        alert("Erro ao enviar candidatura. Tente novamente.");
+      }
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
-      alert("Erro ao enviar mensagem. Tente novamente.");
+      alert("Erro ao enviar candidatura. Tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
