@@ -74,7 +74,6 @@ export const PortfolioSection = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
                   onHoverStart={() => {
                     if (isFeijao) setHoveredFeijao(true);
                     if (isSoja) setHoveredSoja(true);
@@ -88,11 +87,14 @@ export const PortfolioSection = () => {
                     if (isForrageiras) setHoveredForrageiras(false);
                   }}
                   animate={{
+                    opacity: 1,
+                    y: 0,
                     backgroundColor: isMobile || (isFeijao && hoveredFeijao) || (isSoja && hoveredSoja) || (isTrigo && hoveredTrigo) || (isForrageiras && hoveredForrageiras) ? "#16323d" : "transparent",
                   }}
                   transition={{
-                    duration: 0.5,
-                    ease: [0.25, 0.1, 0.25, 1]
+                    opacity: { duration: 0.6, delay: index * 0.1, ease: "easeOut" },
+                    y: { duration: 0.6, delay: index * 0.1, ease: "easeOut" },
+                    backgroundColor: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   className="relative border border-[#16323d]/20 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-500 ease-in-out group min-h-[380px] md:min-h-[500px]"
                 >
