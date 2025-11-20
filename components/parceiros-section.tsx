@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const parceiros = [
-  { name: "Embrapa", image: "/embrapa.png" },
   { name: "Embrapa Soja", image: "/embrapasoja.svg" },
   { name: "Embrapa AF", image: "/empraba_af.svg" },
   { name: "Biotrigo", image: "/biotrigo.webp" },
