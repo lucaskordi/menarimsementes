@@ -20,11 +20,10 @@ export const ContatoSection = () => {
     <section id="contato" className="bg-white py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          data-mobile-motion="fade"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#16323d] mb-4">
@@ -36,11 +35,10 @@ export const ContatoSection = () => {
           {contactCards.map((card, index) => (
             <motion.div
               key={index}
-              data-mobile-motion="fade"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4 }}
               className="bg-[#f9f8f6] rounded-2xl p-8 border border-gray-100 hover:border-[#16323d] transition-all duration-300"
             >
               <div className="flex flex-col items-center text-center">
@@ -69,10 +67,10 @@ export const ContatoSection = () => {
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           <motion.div
             data-mobile-motion="fade"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="bg-white border border-gray-100 rounded-[32px] p-8 md:p-12 h-full"
           >
             <span className="inline-flex items-center px-4 py-1 border border-[#16323d] text-[#16323d] rounded-full text-xs tracking-[0.2em] uppercase mb-6">

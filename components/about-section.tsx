@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence, useAnimationFrame } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const historyItems = [
   {
@@ -44,17 +44,10 @@ export const AboutSection = () => {
   const exitDirectionRef = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const time = useMotionValue(0);
-
   useEffect(() => {
     const checkMobile = () => {
-      // Detecta mobile e tablets (iPad inclusive)
       if (typeof window === 'undefined') return;
       const width = window.innerWidth;
-      // iPad reporta 768px ou 1024px, tablets em geral < 1024px
-      // Inclui explicitamente 768px que é o iPad padrão
       setIsMobile(width < 1024);
     };
     checkMobile();
@@ -65,42 +58,6 @@ export const AboutSection = () => {
       window.removeEventListener('orientationchange', checkMobile);
     };
   }, []);
-
-  const springConfig = { damping: 25, stiffness: 200 };
-
-  const x1 = useSpring(useTransform(mouseX, (value) => value * 0.02), springConfig);
-  const y1 = useSpring(useTransform(mouseY, (value) => value * 0.02), springConfig);
-  
-  const x2 = useSpring(useTransform(mouseX, (value) => value * -0.02), springConfig);
-  const y2 = useSpring(useTransform(mouseY, (value) => value * -0.02), springConfig);
-
-  // Animação de onda cossenoidal para mobile
-  const cosineX1 = useTransform(time, (t) => Math.cos(t * 0.3) * 15);
-  const cosineY1 = useTransform(time, (t) => Math.sin(t * 0.3) * 10 - 120);
-  const cosineX2 = useTransform(time, (t) => Math.cos(t * 0.35 + Math.PI / 2) * 15);
-  const cosineY2 = useTransform(time, (t) => Math.sin(t * 0.35 + Math.PI / 2) * 10 - 120);
-
-  useAnimationFrame((t, delta) => {
-    if (!isMobile) {
-      time.set(time.get() + delta * 0.001);
-    }
-  });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
 
   const goToNextHistory = () => {
     exitDirectionRef.current = 1;
@@ -126,10 +83,10 @@ export const AboutSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
           <motion.div
-            initial={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 0 : 0 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
           >
             <div className="inline-block mb-6">
               <span className="px-4 py-2 rounded-full text-sm font-medium text-white border border-white">
@@ -142,9 +99,10 @@ export const AboutSection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 0 : 0 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
             transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
             className="relative h-[350px] md:h-[400px] -mt-16 md:mt-0 z-30"
           >
@@ -169,10 +127,10 @@ export const AboutSection = () => {
                     <motion.div
                       key={currentHistoryIndex}
                       custom={direction}
-                      initial={{ opacity: 0, y: isMobile ? 0 : (direction > 0 ? -30 : 30) }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: isMobile ? 0 : (exitDirectionRef.current > 0 ? 30 : -30) }}
-                      transition={{ duration: isMobile ? 0.3 : 0.4 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                       className="text-left"
                     >
                       <span className="text-[#d5b14f] text-lg md:text-xl font-bold">
@@ -236,8 +194,6 @@ export const AboutSection = () => {
 
       <motion.div
         ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
         className="relative w-full md:w-screen h-[500px] md:h-[600px] mt-16 -mt-32 md:mt-16 mb-[-220px] md:mb-0 overflow-visible md:overflow-hidden left-0 md:left-1/2 md:-translate-x-1/2 z-0"
       >
         <div className="absolute inset-0 z-0 flex items-start overflow-hidden pt-0">
@@ -286,13 +242,7 @@ export const AboutSection = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          style={{ 
-            x: isMobile ? cosineX1 : x1,
-            y: isMobile ? cosineY1 : y1
-          }}
-          className="absolute inset-0 z-10"
-        >
+        <div className="absolute inset-0 z-10">
           <div className="relative w-full h-full scale-150 md:scale-100">
             <Image
               src="/sobrep01.webp"
@@ -302,15 +252,9 @@ export const AboutSection = () => {
               sizes="100vw"
             />
           </div>
-        </motion.div>
+        </div>
         
-        <motion.div
-          style={{ 
-            x: isMobile ? cosineX2 : x2,
-            y: isMobile ? cosineY2 : y2
-          }}
-          className="absolute inset-0 z-20"
-        >
+        <div className="absolute inset-0 z-20">
           <div className="relative w-full h-full scale-150 md:scale-100">
             <Image
               src="/sobrep2.webp"
@@ -320,7 +264,7 @@ export const AboutSection = () => {
               sizes="100vw"
             />
           </div>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );

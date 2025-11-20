@@ -16,66 +16,10 @@ const menuItems = [
   "Trabalhe Conosco",
 ];
 
-const lightSectionIds = [
-  "portfolio",
-  "tsi",
-  "resultados",
-  "rastreabilidade",
-  "parceiros",
-  "contato",
-];
-
 export const Header = () => {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isOverWhite, setIsOverWhite] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    let ticking = false;
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          
-          const isScrolledNew = currentScrollY > 100;
-          setIsScrolled(isScrolledNew);
-
-          const headerHeight = isScrolledNew ? 90 : 110;
-          const width = window.innerWidth;
-          const isTrabalheConoscoPage = pathname === "/trabalhe-conosco";
-          
-          if (isTrabalheConoscoPage) {
-            setIsOverWhite(true);
-          } else if (width >= 1024) {
-            let overLightSection = false;
-            for (const id of lightSectionIds) {
-              const section = document.getElementById(id);
-              if (!section) continue;
-              const rect = section.getBoundingClientRect();
-              if (rect.top <= headerHeight && rect.bottom > 0) {
-                overLightSection = true;
-                break;
-              }
-            }
-            setIsOverWhite(overLightSection);
-          } else {
-            setIsOverWhite(false);
-          }
-
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -135,8 +79,6 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
     setIsMenuOpen(false);
   };
 
-  const headerVerticalPadding = isScrolled ? "0.5rem" : "0.75rem";
-
   const menuButton = (
     <motion.button
       aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
@@ -147,7 +89,7 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
         isMenuOpen
           ? {
               right: "calc((100vw - min(90vw, 80rem)) / 2 + 1rem)",
-              top: `calc(1.5rem + ${headerVerticalPadding})`,
+              top: "calc(1.5rem + 0.75rem)",
             }
           : undefined
       }
@@ -183,14 +125,8 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
 
   return (
     <>
-    <motion.header
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-[70] backdrop-blur-md rounded-2xl shadow-lg transition-all duration-300 ease-in-out w-[90%] max-w-7xl ${
-        isScrolled ? "py-2" : "py-3"
-      } ${
-        isOverWhite || isMobile
-          ? "bg-[#16323d]/30 border border-[#16323d]/40" 
-          : "bg-white/10 border border-white/20"
-      }`}
+    <header
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-[70] backdrop-blur-md rounded-2xl shadow-lg w-[90%] max-w-7xl py-3 bg-[#16323d]/60 border border-[#16323d]/40"
       style={{
         color: 'white'
       }}
@@ -279,7 +215,7 @@ const handleMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =
               </div>
             </div>
           </div>
-        </motion.header>
+        </header>
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div

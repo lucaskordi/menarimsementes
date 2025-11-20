@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Script from "next/script";
@@ -86,6 +86,8 @@ export const ResultadosSection = () => {
   const duplicatedItems = [...items, ...items, ...items, ...items];
   const [currentInstagramIndex, setCurrentInstagramIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const postsPerPage = isMobile ? 1 : 3;
 
   useEffect(() => {
@@ -109,11 +111,36 @@ export const ResultadosSection = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (window.instgrm) {
-        window.instgrm.Embeds.process();
+        try {
+          window.instgrm.Embeds.process();
+        } catch (e) {
+          console.error("Instagram embed error:", e);
+        }
       }
-    }, 100);
+    }, 500);
     return () => clearTimeout(timer);
   }, [currentInstagramIndex]);
+
+  useEffect(() => {
+    if (!carouselRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsCarouselVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    observer.observe(carouselRef.current);
+    
+    return () => {
+      if (carouselRef.current) {
+        observer.unobserve(carouselRef.current);
+      }
+    };
+  }, []);
 
   const getVisiblePosts = () => {
     const posts = [...instagramPosts, ...instagramPosts];
@@ -177,10 +204,10 @@ export const ResultadosSection = () => {
         </div>
         <div className="absolute inset-0 container mx-auto px-4 md:px-8 z-10 flex flex-col items-center justify-center pb-32 md:pb-48 lg:pb-0 py-12 md:py-0 min-h-[1100px] md:min-h-[1200px] lg:min-h-0">
           <motion.div
-            initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: isMobile ? 0.3 : 0.4, ease: "easeOut" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-8"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#16323d] mb-4">
@@ -197,10 +224,10 @@ export const ResultadosSection = () => {
                 <motion.button
                   key="prev-button-desktop"
                   onClick={goToPreviousInstagram}
-                  initial={{ opacity: 0, scale: 0.8, x: -20 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, x: -20 }}
-                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="hidden md:block absolute -left-16 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-[#16323d] p-3 rounded-full transition-colors shadow-lg"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -219,9 +246,10 @@ export const ResultadosSection = () => {
                   x: `calc(-${currentInstagramIndex * (100 / postsPerPage)}%)`,
                 }}
                 transition={{
-                  duration: 0.6,
-                  ease: [0.25, 0.1, 0.25, 1],
+                  duration: 0.4,
+                  ease: "easeInOut",
                 }}
+                style={{ willChange: "transform" }}
                 className="flex"
               >
                 {instagramPosts.map((post, index) => {
@@ -260,10 +288,10 @@ export const ResultadosSection = () => {
                 <motion.button
                   key="next-button-desktop"
                   onClick={goToNextInstagram}
-                  initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="hidden md:block absolute -right-16 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-[#16323d] p-3 rounded-full transition-colors shadow-lg"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -350,13 +378,13 @@ export const ResultadosSection = () => {
       </section>
 
       <section className="bg-white py-16 overflow-hidden">
-        <div className="relative">
+        <div className="relative" ref={carouselRef}>
           <motion.div
             className="flex gap-6"
             style={{ willChange: "transform" }}
-            animate={{
+            animate={isCarouselVisible ? {
               x: ["0%", "-50%"],
-            }}
+            } : {}}
             transition={{
               x: {
                 repeat: Infinity,

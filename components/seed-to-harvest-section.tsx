@@ -34,10 +34,10 @@ export const SeedToHarvestSection = () => {
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8">
               <div className="flex flex-col flex-1 items-center md:items-start">
                 <motion.div
-                  initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: isMobile ? 0.3 : 0.6 }}
+                  transition={{ duration: 0.4 }}
                   className="text-center md:text-left md:pl-8 md:pl-12"
                 >
                   <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight text-[#16323d]">
@@ -47,10 +47,10 @@ export const SeedToHarvestSection = () => {
               </div>
               <div className="hidden md:block max-w-md text-right pt-2">
                 <motion.p
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.4 }}
                   className="text-[#16323d] text-sm md:text-base"
                 >
                   A rastreabilidade garante a origem e o controle de cada lote de sementes, oferecendo transparência, segurança e confiança ao produtor.

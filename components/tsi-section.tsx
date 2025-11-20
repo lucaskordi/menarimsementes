@@ -40,10 +40,10 @@ export const TsiSection = () => {
     <section id="tsi" className="py-20 md:py-32" style={{ backgroundColor: "#F5F3F1" }}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
         >
           <div className="bg-[#16323d] rounded-2xl p-6 md:p-8 lg:p-10 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -74,12 +74,11 @@ export const TsiSection = () => {
                   {tsiFeatures.map((feature, index) => (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0 }}
                       animate={{
                         opacity: visibleChecks.includes(index) ? 1 : 0,
-                        x: visibleChecks.includes(index) ? 0 : -20,
                       }}
-                      transition={{ duration: 0.5, delay: index * 0.2 }}
+                      transition={{ duration: 0.3 }}
                       className="flex items-center gap-3"
                     >
                       <motion.svg

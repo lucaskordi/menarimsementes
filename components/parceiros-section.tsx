@@ -34,10 +34,10 @@ export const ParceirosSection = () => {
     <section id="parceiros" className="py-20 md:py-32" style={{ backgroundColor: "#F5F3F1" }}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#16323d] mb-4">
@@ -49,10 +49,10 @@ export const ParceirosSection = () => {
           {parceiros.map((parceiro, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : index * 0.1 }}
+              transition={{ duration: 0.4 }}
               className="relative w-24 md:w-32 lg:w-40 h-16 md:h-20 lg:h-24 group"
               whileHover={{ scale: 1.1, transition: { duration: 0.2, ease: "easeOut" } }}
             >

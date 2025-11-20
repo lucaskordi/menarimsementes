@@ -91,16 +91,11 @@ export const HeroCarousel = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <motion.div
                   key={`title-${index}-${currentIndex}`}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0 }}
                   animate={{
                     opacity: index === currentIndex ? 1 : 0,
-                    x: index === currentIndex ? 0 : -20,
                   }}
-                  transition={{ 
-                    duration: 0.4,
-                    delay: 0.1,
-                    ease: "easeOut"
-                  }}
+                  transition={{ duration: 0.3 }}
                   className="text-left"
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#d5b14f] leading-tight">
@@ -109,16 +104,11 @@ export const HeroCarousel = () => {
                 </motion.div>
                 <motion.div
                   key={`desc-${index}-${currentIndex}`}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={{
                     opacity: index === currentIndex ? 1 : 0,
-                    x: index === currentIndex ? 0 : 20,
                   }}
-                  transition={{ 
-                    duration: 0.4,
-                    delay: 0.15,
-                    ease: "easeOut"
-                  }}
+                  transition={{ duration: 0.3 }}
                   className="text-left md:text-right"
                 >
                   <p className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed max-w-lg md:ml-auto">

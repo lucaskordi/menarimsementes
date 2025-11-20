@@ -46,10 +46,10 @@ export const PortfolioSection = () => {
     <section id="portfolio" className="bg-white py-20 md:py-32 relative -mt-64 md:-mt-80 z-30">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: isMobile ? 0.3 : 0.4, ease: "easeOut" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
           className="max-w-7xl mx-auto"
         >
           <div className="inline-block mb-6">
@@ -71,14 +71,10 @@ export const PortfolioSection = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ 
-                    opacity: { duration: isMobile ? 0.3 : 0.3, delay: isMobile ? 0 : index * 0.05 },
-                    y: { duration: isMobile ? 0 : 0.3, delay: isMobile ? 0 : index * 0.05 },
-                    backgroundColor: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
-                  }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
                   onHoverStart={() => {
                     if (isFeijao) setHoveredFeijao(true);
                     if (isSoja) setHoveredSoja(true);
@@ -131,9 +127,9 @@ export const PortfolioSection = () => {
                     </div>
                     {isSoja && (isMobile || hoveredSoja) && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
                         className="flex-1 flex flex-col justify-center items-center w-full"
                       >
                         <div className="space-y-2 mb-6 w-full max-w-md">
@@ -180,9 +176,9 @@ export const PortfolioSection = () => {
                     )}
                     {isTrigo && (isMobile || hoveredTrigo) && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
                         className="flex-1 flex flex-col justify-center items-center w-full"
                       >
                         <div className="space-y-2 mb-6 w-full max-w-md">
@@ -230,9 +226,9 @@ export const PortfolioSection = () => {
                     )}
                     {isFeijao && (isMobile || hoveredFeijao) && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
                         className="flex-1 flex flex-col justify-center items-center w-full"
                       >
                         <div className="space-y-4 mb-6 w-full max-w-md">
@@ -279,9 +275,9 @@ export const PortfolioSection = () => {
                     )}
                     {isForrageiras && (isMobile || hoveredForrageiras) && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
                         className="flex-1 flex flex-col justify-center items-center w-full"
                       >
                         <div className="space-y-2 mb-6 w-full max-w-md">
@@ -312,7 +308,7 @@ export const PortfolioSection = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.4 }}
             className="text-center"
           >
             <p className="text-base md:text-lg text-gray-700 mb-8">
@@ -323,10 +319,10 @@ export const PortfolioSection = () => {
                 href="https://wa.me/5543988082844"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.5 }}
+                transition={{ duration: 0.4 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 md:px-8 py-3 md:py-4 bg-[#16323d] text-white rounded-md font-medium text-base md:text-lg hover:bg-white hover:text-[#16323d] hover:shadow-lg transition-all duration-500 shadow-lg"
@@ -337,10 +333,10 @@ export const PortfolioSection = () => {
                 href="https://drive.google.com/drive/u/0/folders/1n1ayvW7E5A6rj1gVd6wsEe93AD-_DlBG?fbclid=PAQ0xDSwLseLtleHRuA2FlbQIxMQABpxOUJ3IfeRfr7aszBpukxBhA6FmnKdkH8Z6ltTZf8dmI3KlsA4QeXgFGEHxj_aem_Pm_Kqu_wgXGgK-TCtWm5pw"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.6 }}
+                transition={{ duration: 0.4 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 md:px-8 py-3 md:py-4 bg-[#d5b14f] text-white rounded-md font-medium text-base md:text-lg hover:bg-white hover:text-[#16323d] hover:shadow-lg transition-all duration-500 shadow-lg"
