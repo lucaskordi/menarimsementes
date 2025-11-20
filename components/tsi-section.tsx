@@ -14,6 +14,16 @@ const tsiFeatures = [
 
 export const TsiSection = () => {
   const [visibleChecks, setVisibleChecks] = useState<number[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,10 +40,10 @@ export const TsiSection = () => {
     <section id="tsi" className="py-20 md:py-32" style={{ backgroundColor: "#F5F3F1" }}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
         >
           <div className="bg-[#16323d] rounded-2xl p-6 md:p-8 lg:p-10 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">

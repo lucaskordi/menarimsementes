@@ -21,3 +21,9 @@ body {
   color: var(--foreground);
   font-family: var(--font-rethink-sans), sans-serif;
 }
+
+@media (max-width: 1023px) {
+  [data-mobile-motion="fade"] {
+    transform: translate3d(0, 0, 0) !important;
+  }
+}

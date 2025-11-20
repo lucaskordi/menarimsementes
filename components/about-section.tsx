@@ -126,10 +126,10 @@ export const AboutSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 10 : 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
           >
             <div className="inline-block mb-6">
               <span className="px-4 py-2 rounded-full text-sm font-medium text-white border border-white">
@@ -142,14 +142,14 @@ export const AboutSection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 10 : 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
             className="relative h-[350px] md:h-[400px] -mt-16 md:mt-0 z-30"
           >
             <div className="relative h-full flex items-center">
-              <div className="absolute -left-8 top-0 bottom-0 w-8">
+              <div className="hidden md:block absolute -left-8 top-0 bottom-0 w-8">
                 <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-white/30"></div>
                 <motion.div
                   className="absolute left-2 w-4 h-4 rounded-full bg-[#d5b14f] -translate-x-1/2"
@@ -163,16 +163,16 @@ export const AboutSection = () => {
                 />
               </div>
 
-              <div className="ml-12">
+              <div className="ml-0 md:ml-12">
                 <div className="w-full max-w-lg">
                   <AnimatePresence mode="wait" custom={direction}>
                     <motion.div
                       key={currentHistoryIndex}
                       custom={direction}
-                      initial={{ opacity: 0, y: isMobile ? -30 : (direction > 0 ? -30 : 30) }}
+                      initial={{ opacity: 0, y: isMobile ? 0 : (direction > 0 ? -30 : 30) }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: isMobile ? 30 : (exitDirectionRef.current > 0 ? 30 : -30) }}
-                      transition={{ duration: 0.4 }}
+                      exit={{ opacity: 0, y: isMobile ? 0 : (exitDirectionRef.current > 0 ? 30 : -30) }}
+                      transition={{ duration: isMobile ? 0.3 : 0.4 }}
                       className="text-left"
                     >
                       <span className="text-[#d5b14f] text-lg md:text-xl font-bold">

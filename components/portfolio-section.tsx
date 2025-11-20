@@ -46,10 +46,10 @@ export const PortfolioSection = () => {
     <section id="portfolio" className="bg-white py-20 md:py-32 relative -mt-64 md:-mt-80 z-30">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: isMobile ? 0.3 : 0.4, ease: "easeOut" }}
           className="max-w-7xl mx-auto"
         >
           <div className="inline-block mb-6">
@@ -71,12 +71,12 @@ export const PortfolioSection = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: isMobile ? 5 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ 
-                    opacity: { duration: 0.3, delay: index * 0.05 },
-                    y: { duration: 0.3, delay: index * 0.05 },
+                    opacity: { duration: isMobile ? 0.25 : 0.3, delay: isMobile ? 0 : index * 0.05 },
+                    y: { duration: isMobile ? 0.25 : 0.3, delay: isMobile ? 0 : index * 0.05 },
                     backgroundColor: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   onHoverStart={() => {

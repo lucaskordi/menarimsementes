@@ -34,10 +34,10 @@ export const SeedToHarvestSection = () => {
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8">
               <div className="flex flex-col flex-1 items-center md:items-start">
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: isMobile ? 0.3 : 0.6 }}
                   className="text-center md:text-left md:pl-8 md:pl-12"
                 >
                   <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight text-[#16323d]">
@@ -59,10 +59,10 @@ export const SeedToHarvestSection = () => {
             </div>
             <div className="flex flex-col">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.1 }}
                 className="relative z-0 self-center md:self-end -mt-4 md:-mt-6 text-center md:text-right md:pr-8 md:pr-12"
               >
                 <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight text-[#d5b14f]">
@@ -74,9 +74,10 @@ export const SeedToHarvestSection = () => {
 
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 mt-8 md:-mt-16 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: isMobile ? 0.3 : 0.6 }}
               onHoverStart={() => setHoveredCard(0)}
               onHoverEnd={() => setHoveredCard(null)}
               animate={{
@@ -130,9 +131,10 @@ export const SeedToHarvestSection = () => {
               </motion.div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: isMobile ? 0.3 : 0.6 }}
               onHoverStart={() => setHoveredCard(1)}
               onHoverEnd={() => setHoveredCard(null)}
               animate={{
@@ -209,10 +211,10 @@ export const SeedToHarvestSection = () => {
           {/* Parágrafo para mobile - embaixo dos cards */}
           <div className="md:hidden mt-6 max-w-md mx-auto">
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: isMobile ? 10 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.3 }}
               className="text-[#16323d] text-sm text-center"
             >
               A rastreabilidade garante a origem e o controle de cada lote de sementes, oferecendo transparência, segurança e confiança ao produtor.

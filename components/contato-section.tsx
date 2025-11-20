@@ -1,46 +1,18 @@
 "use client";
 
+import { FormEvent } from "react";
 import { motion } from "framer-motion";
 
-const contactCards = [
-  {
-    icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: "Envie um e-mail",
-    contact: "contato@menarimsementes.com.br",
-    buttonText: "Enviar e-mail",
-    buttonAction: () => window.location.href = "mailto:contato@menarimsementes.com.br",
-  },
-  {
-    icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-      </svg>
-    ),
-    title: "Ligue para nós",
-    contact: "+55 43 98808-2844",
-    buttonText: "Ligar Agora",
-    buttonAction: () => window.location.href = "tel:+5543988082844",
-  },
-  {
-    icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
-    title: "Visite nossas fazendas",
-    contact: "Fazenda Vó Anna e Fazenda 5M",
-    buttonText: "Ver Localização",
-    buttonAction: () => {},
-  },
-];
+interface ContactCard {
+  icon: JSX.Element;
+  title: string;
+  contact: string;
+  buttonText: string;
+  buttonAction: () => void;
+}
 
 export const ContatoSection = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
@@ -48,6 +20,7 @@ export const ContatoSection = () => {
     <section id="contato" className="bg-white py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
+          data-mobile-motion="fade"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -63,6 +36,7 @@ export const ContatoSection = () => {
           {contactCards.map((card, index) => (
             <motion.div
               key={index}
+              data-mobile-motion="fade"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -94,6 +68,7 @@ export const ContatoSection = () => {
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           <motion.div
+            data-mobile-motion="fade"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -158,6 +133,7 @@ export const ContatoSection = () => {
           </motion.div>
 
           <motion.div
+            data-mobile-motion="fade"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -177,4 +153,41 @@ export const ContatoSection = () => {
     </section>
   );
 };
+
+const contactCards: ContactCard[] = [
+  {
+    icon: (
+      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+    title: "Envie um e-mail",
+    contact: "contato@menarimsementes.com.br",
+    buttonText: "Enviar e-mail",
+    buttonAction: () => { window.location.href = "mailto:contato@menarimsementes.com.br"; },
+  },
+  {
+    icon: (
+      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+    ),
+    title: "Ligue para nós",
+    contact: "+55 43 98808-2844",
+    buttonText: "Ligar Agora",
+    buttonAction: () => { window.location.href = "tel:+5543988082844"; },
+  },
+  {
+    icon: (
+      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
+    title: "Visite nossas fazendas",
+    contact: "Fazenda Vó Anna e Fazenda 5M",
+    buttonText: "Ver Localização",
+    buttonAction: () => {},
+  },
+];
 

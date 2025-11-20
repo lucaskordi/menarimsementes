@@ -174,10 +174,10 @@ export const ResultadosSection = () => {
         </div>
         <div className="absolute inset-0 container mx-auto px-4 md:px-8 z-10 flex flex-col items-center justify-center pb-32 md:pb-48 lg:pb-0 py-12 md:py-0 min-h-[1100px] md:min-h-[1200px] lg:min-h-0">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: isMobile ? 10 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: isMobile ? 0.3 : 0.4, ease: "easeOut" }}
             className="text-center mb-8"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#16323d] mb-4">
