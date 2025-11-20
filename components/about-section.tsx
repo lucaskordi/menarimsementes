@@ -87,6 +87,7 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
+            className="mb-12 md:mb-0"
           >
             <div className="inline-block mb-6">
               <span className="px-4 py-2 rounded-full text-sm font-medium text-white border border-white">
