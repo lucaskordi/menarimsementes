@@ -85,20 +85,20 @@ export const HeroCarousel = () => {
               priority={index === 0}
             />
           </motion.div>
-          <div className="absolute inset-0 bg-[#16323d]/50 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-[#16323d]/70 z-10 pointer-events-none" />
           <div className="absolute inset-0 flex items-center z-20">
             <div className="container mx-auto px-4 md:px-8 w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <motion.div
                   key={`title-${index}-${currentIndex}`}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{
                     opacity: index === currentIndex ? 1 : 0,
-                    x: index === currentIndex ? 0 : -30,
+                    x: index === currentIndex ? 0 : -20,
                   }}
                   transition={{ 
-                    duration: 0.6,
-                    delay: 0.2,
+                    duration: 0.4,
+                    delay: 0.1,
                     ease: "easeOut"
                   }}
                   className="text-left"
@@ -109,14 +109,14 @@ export const HeroCarousel = () => {
                 </motion.div>
                 <motion.div
                   key={`desc-${index}-${currentIndex}`}
-                  initial={{ opacity: 0, x: 30 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{
                     opacity: index === currentIndex ? 1 : 0,
-                    x: index === currentIndex ? 0 : 30,
+                    x: index === currentIndex ? 0 : 20,
                   }}
                   transition={{ 
-                    duration: 0.6,
-                    delay: 0.3,
+                    duration: 0.4,
+                    delay: 0.15,
                     ease: "easeOut"
                   }}
                   className="text-left md:text-right"

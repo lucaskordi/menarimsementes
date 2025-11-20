@@ -49,7 +49,7 @@ export const PortfolioSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           className="max-w-7xl mx-auto"
         >
           <div className="inline-block mb-6">
@@ -71,9 +71,14 @@ export const PortfolioSection = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    opacity: { duration: 0.3, delay: index * 0.05 },
+                    y: { duration: 0.3, delay: index * 0.05 },
+                    backgroundColor: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+                  }}
                   onHoverStart={() => {
                     if (isFeijao) setHoveredFeijao(true);
                     if (isSoja) setHoveredSoja(true);
@@ -90,11 +95,6 @@ export const PortfolioSection = () => {
                     opacity: 1,
                     y: 0,
                     backgroundColor: isMobile || (isFeijao && hoveredFeijao) || (isSoja && hoveredSoja) || (isTrigo && hoveredTrigo) || (isForrageiras && hoveredForrageiras) ? "#16323d" : "transparent",
-                  }}
-                  transition={{
-                    opacity: { duration: 0.6, delay: index * 0.1, ease: "easeOut" },
-                    y: { duration: 0.6, delay: index * 0.1, ease: "easeOut" },
-                    backgroundColor: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   className="relative border border-[#16323d]/20 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-500 ease-in-out group min-h-[380px] md:min-h-[500px]"
                 >
@@ -140,6 +140,16 @@ export const PortfolioSection = () => {
                           <ul className="space-y-2 text-sm md:text-base leading-relaxed drop-shadow-lg list-none">
                             <li className="flex items-center">
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                              <span className="text-[#d5b14f] font-bold">FPS 2664 i2X</span>
+                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
+                            </li>
+                            <li className="flex items-center">
+                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                              <span className="text-[#d5b14f] font-bold">FPS 2657 IPRO</span>
+                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
+                            </li>
+                            <li className="flex items-center">
+                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
                               <span className="text-[#d5b14f] font-bold">BRS 1054IPRO</span>
                             </li>
                             <li className="flex items-center">
@@ -161,16 +171,6 @@ export const PortfolioSection = () => {
                             <li className="flex items-center">
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
                               <span className="text-[#d5b14f] font-bold">BRS 2361 i2X</span>
-                            </li>
-                            <li className="flex items-center">
-                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
-                              <span className="text-[#d5b14f] font-bold">FPS 2664 i2X</span>
-                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
-                            </li>
-                            <li className="flex items-center">
-                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
-                              <span className="text-[#d5b14f] font-bold">FPS 2657 IPRO</span>
-                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
                             </li>
                           </ul>
                         </div>

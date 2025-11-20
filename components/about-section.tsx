@@ -81,7 +81,9 @@ export const AboutSection = () => {
   const cosineY2 = useTransform(time, (t) => Math.sin(t * 0.35 + Math.PI / 2) * 10 - 120);
 
   useAnimationFrame((t, delta) => {
-    time.set(time.get() + delta * 0.001);
+    if (!isMobile) {
+      time.set(time.get() + delta * 0.001);
+    }
   });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -167,9 +169,9 @@ export const AboutSection = () => {
                     <motion.div
                       key={currentHistoryIndex}
                       custom={direction}
-                      initial={{ opacity: 0, y: direction > 0 ? -30 : 30 }}
+                      initial={{ opacity: 0, y: isMobile ? -30 : (direction > 0 ? -30 : 30) }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: exitDirectionRef.current > 0 ? 30 : -30 }}
+                      exit={{ opacity: 0, y: isMobile ? 30 : (exitDirectionRef.current > 0 ? 30 : -30) }}
                       transition={{ duration: 0.4 }}
                       className="text-left"
                     >
