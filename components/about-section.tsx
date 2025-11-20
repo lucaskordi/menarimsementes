@@ -8,7 +8,7 @@ const historyItems = [
   {
     year: "Início",
     title: "Nossa história tem início",
-    content: "Nossa história tem início com o nascimento do nosso fundador Sr. Marcos Frederico Fiorillo Menarim (1941 - 2020)",
+    content: "A história da Menarim Sementes tem início com o nascimento do nosso fundador Sr. Marcos Frederico Fiorillo Menarim (1941 - 2020)",
   },
   {
     year: "1964",
@@ -33,7 +33,7 @@ const historyItems = [
   {
     year: "Futuro",
     title: "De olho no Futuro",
-    content: "De olho no Futuro, a Menarim Sementes desenvolve políticas de valorização do capital humano, investe em alta tecnologia e segurança no trabalho.",
+    content: "A Menarim Sementes desenvolve políticas de valorização do capital humano, investe em alta tecnologia e segurança no trabalho.",
   },
 ];
 
@@ -137,7 +137,7 @@ export const AboutSection = () => {
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              28 Anos de Tecnologia e Compromisso com o Agricultor
+              28 Anos de Experiência em Sementes e Compromisso com o Agricultor
             </h2>
           </motion.div>
 

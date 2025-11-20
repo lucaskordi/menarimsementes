@@ -145,7 +145,17 @@ export const PortfolioSection = () => {
                             </li>
                             <li className="flex items-center">
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
-                              <span className="text-[#d5b14f] font-bold">FPS 2657 IPRO</span>
+                              <span className="text-[#d5b14f] font-bold whitespace-nowrap">FPS 2657 IPRO</span>
+                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded whitespace-nowrap">LANÇAMENTO</span>
+                            </li>
+                            <li className="flex items-center">
+                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                              <span className="text-[#d5b14f] font-bold">BRS 2058 i2X</span>
+                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
+                            </li>
+                            <li className="flex items-center">
+                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                              <span className="text-[#d5b14f] font-bold">BRS 2361 i2X</span>
                               <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
                             </li>
                             <li className="flex items-center">
@@ -164,14 +174,6 @@ export const PortfolioSection = () => {
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
                               <span className="text-[#d5b14f] font-bold">BRS 284</span>
                             </li>
-                            <li className="flex items-center">
-                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
-                              <span className="text-[#d5b14f] font-bold">BRS 2058i2X</span>
-                            </li>
-                            <li className="flex items-center">
-                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
-                              <span className="text-[#d5b14f] font-bold">BRS 2361 i2X</span>
-                            </li>
                           </ul>
                         </div>
                       </motion.div>
@@ -187,15 +189,16 @@ export const PortfolioSection = () => {
                           <ul className="space-y-2 text-sm md:text-base leading-relaxed drop-shadow-lg list-none">
                             <li className="flex items-center">
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
-                              <span className="text-[#d5b14f] font-bold">BIOTRIGO TITAN BIO18244</span>
-                            </li>
-                            <li className="flex items-center">
-                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
-                              <span className="text-[#d5b14f] font-bold">BIOTRIGO TALISMÃ BIO182385</span>
-                            </li>
-                            <li className="flex items-center">
-                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
                               <span className="text-[#d5b14f] font-bold">BIOTRIGO EXCALIBUR</span>
+                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded whitespace-nowrap">LANÇAMENTO</span>
+                            </li>
+                            <li className="flex items-center">
+                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                              <span className="text-[#d5b14f] font-bold">BIOTRIGO TITAN</span>
+                            </li>
+                            <li className="flex items-center">
+                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                              <span className="text-[#d5b14f] font-bold">BIOTRIGO TALISMÃ</span>
                             </li>
                             <li className="flex items-center">
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
@@ -290,6 +293,10 @@ export const PortfolioSection = () => {
                             <li className="flex items-center">
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
                               <span className="text-[#d5b14f] font-bold">Nabo IPR-210</span>
+                            </li>
+                            <li className="flex items-center">
+                              <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                              <span className="text-[#d5b14f] font-bold">Trigo Morisco IPR 91 Baili</span>
                             </li>
                           </ul>
                         </div>

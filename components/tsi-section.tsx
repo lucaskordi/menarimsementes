@@ -6,10 +6,10 @@ import Image from "next/image";
 
 const tsiFeatures = [
   "Sem necessidade de Tratamentos On-Farm",
-  "Tratamento por Batelada",
+  "Tratamento por Batelada, sem Dano Mecânico",
   "Máquina Própria",
+  "Acurácia na Deposição do Ativo",
   "18 Toneladas por Hora",
-  "150Kg por Batelada",
 ];
 
 export const TsiSection = () => {

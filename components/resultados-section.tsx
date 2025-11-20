@@ -17,7 +17,7 @@ declare global {
 
 const instagramPosts = [
   {
-    permalink: "https://www.instagram.com/reel/DQsE4udEUpI/?utm_source=ig_embed&amp;utm_campaign=loading",
+    permalink: "https://www.instagram.com/reel/DPCfjMtjyjb/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
   {
     permalink: "https://www.instagram.com/reel/DQfHvrvjF5a/?utm_source=ig_embed&amp;utm_campaign=loading",
@@ -27,6 +27,9 @@ const instagramPosts = [
   },
   {
     permalink: "https://www.instagram.com/reel/DPpIIzzkWGv/?utm_source=ig_embed&amp;utm_campaign=loading",
+  },
+  {
+    permalink: "https://www.instagram.com/reel/DQsE4udEUpI/?utm_source=ig_embed&amp;utm_campaign=loading",
   },
 ];
 
@@ -357,7 +360,7 @@ export const ResultadosSection = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 60,
+                duration: 12,
                 ease: "linear",
               },
             }}

@@ -12,8 +12,8 @@ const heroContent = [
   },
   {
     image: "/hero2.webp",
-    title: "Tecnologia e Inovação com TSI e Barracão Refrigerado",
-    description: "Utilizamos Tecnologia de Sementes de Inoculação (TSI) de última geração e contamos com barracão refrigerado para garantir a preservação ideal das sementes. Nossa infraestrutura tecnológica assegura máxima qualidade e germinação em todos os lotes.",
+    title: "Tecnologia e Inovação",
+    description: "Utilizamos Tratamento de Sementes Industrial (TSI) de última geração e contamos com Barracão Refrigerado para garantir a preservação ideal das sementes. Nossa infraestrutura tecnológica assegura máxima qualidade e germinação em todos os lotes.",
   },
   {
     image: "/hero3.webp",
