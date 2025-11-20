@@ -353,6 +353,7 @@ export const ResultadosSection = () => {
         <div className="relative">
           <motion.div
             className="flex gap-6"
+            style={{ willChange: "transform" }}
             animate={{
               x: ["0%", "-50%"],
             }}

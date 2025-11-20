@@ -28,51 +28,54 @@ const lightSectionIds = [
 export const Header = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [isOverWhite, setIsOverWhite] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 100) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          const isScrolledNew = currentScrollY > 100;
+          setIsScrolled(isScrolledNew);
 
-      const headerHeight = currentScrollY > 100 ? 90 : 110;
-      const width = window.innerWidth;
-      const isTrabalheConoscoPage = pathname === "/trabalhe-conosco";
-      
-      if (isTrabalheConoscoPage) {
-        setIsOverWhite(true);
-      } else if (width >= 1024) {
-        let overLightSection = false;
-        for (const id of lightSectionIds) {
-          const section = document.getElementById(id);
-          if (!section) continue;
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= headerHeight && rect.bottom > 0) {
-            overLightSection = true;
-            break;
+          const headerHeight = isScrolledNew ? 90 : 110;
+          const width = window.innerWidth;
+          const isTrabalheConoscoPage = pathname === "/trabalhe-conosco";
+          
+          if (isTrabalheConoscoPage) {
+            setIsOverWhite(true);
+          } else if (width >= 1024) {
+            let overLightSection = false;
+            for (const id of lightSectionIds) {
+              const section = document.getElementById(id);
+              if (!section) continue;
+              const rect = section.getBoundingClientRect();
+              if (rect.top <= headerHeight && rect.bottom > 0) {
+                overLightSection = true;
+                break;
+              }
+            }
+            setIsOverWhite(overLightSection);
+          } else {
+            setIsOverWhite(false);
           }
-        }
-        setIsOverWhite(overLightSection);
-      } else {
-        setIsOverWhite(false);
-      }
 
-      setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [pathname]);
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
