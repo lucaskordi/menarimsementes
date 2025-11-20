@@ -319,12 +319,10 @@ export const PortfolioSection = () => {
                 href="https://wa.me/5543988082844"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="px-6 md:px-8 py-3 md:py-4 bg-[#16323d] text-white rounded-md font-medium text-base md:text-lg hover:bg-white hover:text-[#16323d] hover:shadow-lg transition-all duration-500 shadow-lg"
               >
                 Falar com um Consultor
@@ -333,12 +331,10 @@ export const PortfolioSection = () => {
                 href="https://drive.google.com/drive/u/0/folders/1n1ayvW7E5A6rj1gVd6wsEe93AD-_DlBG?fbclid=PAQ0xDSwLseLtleHRuA2FlbQIxMQABpxOUJ3IfeRfr7aszBpukxBhA6FmnKdkH8Z6ltTZf8dmI3KlsA4QeXgFGEHxj_aem_Pm_Kqu_wgXGgK-TCtWm5pw"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="px-6 md:px-8 py-3 md:py-4 bg-[#d5b14f] text-white rounded-md font-medium text-base md:text-lg hover:bg-white hover:text-[#16323d] hover:shadow-lg transition-all duration-500 shadow-lg"
               >
                 Ver Portfólio Completo

@@ -132,12 +132,33 @@ export const AboutSection = () => {
                       transition={{ duration: 0.3 }}
                       className="text-left"
                     >
-                      <span className="text-[#d5b14f] text-lg md:text-xl font-bold">
-                        {historyItems[currentHistoryIndex].year}
-                      </span>
-                      <h3 className="text-white text-xl md:text-2xl font-bold mt-2 mb-3">
-                        {historyItems[currentHistoryIndex].title}
-                      </h3>
+                      <div className="flex items-center gap-3 md:gap-4 mb-3 flex-wrap">
+                        {currentHistoryIndex === 0 && (
+                          <div className="relative w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
+                            <Image
+                              src="/memory.webp"
+                              alt="Memória"
+                              fill
+                              className="object-cover rounded"
+                              sizes="(max-width: 768px) 192px, 224px"
+                            />
+                          </div>
+                        )}
+                        <div className="flex-1 text-left">
+                          <span className="text-[#d5b14f] text-lg md:text-xl font-bold block">
+                            {historyItems[currentHistoryIndex].year}
+                          </span>
+                          {currentHistoryIndex === 0 ? (
+                            <h3 className="text-white text-xl md:text-2xl font-bold mt-2">
+                              Nossa História<br />tem Início
+                            </h3>
+                          ) : (
+                            <h3 className="text-white text-xl md:text-2xl font-bold mt-2">
+                              {historyItems[currentHistoryIndex].title}
+                            </h3>
+                          )}
+                        </div>
+                      </div>
                       <p className="text-gray-200 text-base md:text-lg leading-relaxed">
                         {historyItems[currentHistoryIndex].content}
                       </p>

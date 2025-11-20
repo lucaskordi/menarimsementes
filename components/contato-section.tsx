@@ -35,8 +35,8 @@ export const ContatoSection = () => {
           {contactCards.map((card, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
               className="bg-[#f9f8f6] rounded-2xl p-8 border border-gray-100 hover:border-[#16323d] transition-all duration-300"
@@ -54,8 +54,6 @@ export const ContatoSection = () => {
                 <motion.button
                   onClick={card.buttonAction}
                   className="px-6 py-3 bg-[#d5b14f] text-white rounded-md font-medium hover:bg-[#16323d] hover:text-white transition-all duration-500"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   {card.buttonText}
                 </motion.button>
@@ -122,8 +120,6 @@ export const ContatoSection = () => {
               <motion.button
                 type="submit"
                 className="px-6 py-3 bg-[#d5b14f] text-white rounded-md font-semibold shadow-md hover:bg-[#16323d] hover:text-white hover:shadow-lg transition-all duration-500"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 Enviar mensagem
               </motion.button>
@@ -131,11 +127,10 @@ export const ContatoSection = () => {
           </motion.div>
 
           <motion.div
-            data-mobile-motion="fade"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4 }}
             className="rounded-[32px] overflow-hidden border border-gray-100 h-full min-h-[450px]"
           >
             <iframe
