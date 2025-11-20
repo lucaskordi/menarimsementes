@@ -34,7 +34,7 @@ export const SeedToHarvestSection = () => {
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8">
               <div className="flex flex-col flex-1 items-center md:items-start">
                 <motion.div
-                  initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+                  initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: isMobile ? 0.3 : 0.6 }}
@@ -59,7 +59,7 @@ export const SeedToHarvestSection = () => {
             </div>
             <div className="flex flex-col">
               <motion.div
-                initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+                initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.1 }}
@@ -74,7 +74,7 @@ export const SeedToHarvestSection = () => {
 
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 mt-8 md:-mt-16 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+              initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: isMobile ? 0.3 : 0.6 }}
@@ -131,7 +131,7 @@ export const SeedToHarvestSection = () => {
               </motion.div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+              initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: isMobile ? 0.3 : 0.6 }}
@@ -211,7 +211,7 @@ export const SeedToHarvestSection = () => {
           {/* Parágrafo para mobile - embaixo dos cards */}
           <div className="md:hidden mt-6 max-w-md mx-auto">
             <motion.p
-              initial={{ opacity: 0, y: isMobile ? 10 : 20 }}
+              initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.3 }}

@@ -126,7 +126,7 @@ export const AboutSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
           <motion.div
-            initial={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 10 : 0 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 0 : 0 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
@@ -142,7 +142,7 @@ export const AboutSection = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 10 : 0 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 0 : 0 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}

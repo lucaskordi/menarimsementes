@@ -1,10 +1,10 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, ReactNode } from "react";
 import { motion } from "framer-motion";
 
 interface ContactCard {
-  icon: JSX.Element;
+  icon: ReactNode;
   title: string;
   contact: string;
   buttonText: string;

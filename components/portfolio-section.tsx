@@ -71,12 +71,12 @@ export const PortfolioSection = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: isMobile ? 5 : 20 }}
+                  initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ 
-                    opacity: { duration: isMobile ? 0.25 : 0.3, delay: isMobile ? 0 : index * 0.05 },
-                    y: { duration: isMobile ? 0.25 : 0.3, delay: isMobile ? 0 : index * 0.05 },
+                    opacity: { duration: isMobile ? 0.3 : 0.3, delay: isMobile ? 0 : index * 0.05 },
+                    y: { duration: isMobile ? 0 : 0.3, delay: isMobile ? 0 : index * 0.05 },
                     backgroundColor: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
                   }}
                   onHoverStart={() => {
@@ -316,10 +316,10 @@ export const PortfolioSection = () => {
                 href="https://wa.me/5543988082844"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.5 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 md:px-8 py-3 md:py-4 bg-[#16323d] text-white rounded-md font-medium text-base md:text-lg hover:bg-white hover:text-[#16323d] hover:shadow-lg transition-all duration-500 shadow-lg"
@@ -330,10 +330,10 @@ export const PortfolioSection = () => {
                 href="https://drive.google.com/drive/u/0/folders/1n1ayvW7E5A6rj1gVd6wsEe93AD-_DlBG?fbclid=PAQ0xDSwLseLtleHRuA2FlbQIxMQABpxOUJ3IfeRfr7aszBpukxBhA6FmnKdkH8Z6ltTZf8dmI3KlsA4QeXgFGEHxj_aem_Pm_Kqu_wgXGgK-TCtWm5pw"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: isMobile ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : 0.6 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 md:px-8 py-3 md:py-4 bg-[#d5b14f] text-white rounded-md font-medium text-base md:text-lg hover:bg-white hover:text-[#16323d] hover:shadow-lg transition-all duration-500 shadow-lg"

@@ -32,7 +32,7 @@ export const ParceirosSection = () => {
     <section id="parceiros" className="py-20 md:py-32" style={{ backgroundColor: "#F5F3F1" }}>
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+          initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: isMobile ? 0.3 : 0.6, ease: "easeOut" }}
@@ -47,7 +47,7 @@ export const ParceirosSection = () => {
           {parceiros.map((parceiro, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+              initial={{ opacity: 0, y: isMobile ? 0 : 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: isMobile ? 0.3 : 0.6, delay: isMobile ? 0 : index * 0.1 }}
