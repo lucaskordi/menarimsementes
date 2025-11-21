@@ -151,7 +151,7 @@ export const AboutSection = () => {
                           </span>
                           {currentHistoryIndex === 0 ? (
                             <h3 className="text-white text-xl md:text-2xl font-bold mt-2">
-                              Nossa História<br />tem Início
+                              Nossa<br />História
                             </h3>
                           ) : (
                             <h3 className="text-white text-xl md:text-2xl font-bold mt-2">
