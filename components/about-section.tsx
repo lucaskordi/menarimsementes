@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const historyItems = [
   {
@@ -39,10 +39,20 @@ const historyItems = [
 
 export const AboutSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const imagesContainerRef = useRef<HTMLDivElement>(null);
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const exitDirectionRef = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springConfig = { damping: 25, stiffness: 150 };
+  const x1 = useSpring(useTransform(mouseX, (v) => v * 0.02), springConfig);
+  const y1 = useSpring(useTransform(mouseY, (v) => v * 0.02), springConfig);
+  const x2 = useSpring(useTransform(mouseX, (v) => v * -0.03), springConfig);
+  const y2 = useSpring(useTransform(mouseY, (v) => v * -0.03), springConfig);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -58,6 +68,33 @@ export const AboutSection = () => {
       window.removeEventListener('orientationchange', checkMobile);
     };
   }, []);
+
+  useEffect(() => {
+    if (!imagesContainerRef.current || isMobile) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!imagesContainerRef.current) return;
+      const rect = imagesContainerRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      mouseX.set(e.clientX - centerX);
+      mouseY.set(e.clientY - centerY);
+    };
+
+    const handleMouseLeave = () => {
+      mouseX.set(0);
+      mouseY.set(0);
+    };
+
+    const container = imagesContainerRef.current;
+    container.addEventListener('mousemove', handleMouseMove, { passive: true });
+    container.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      container.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [isMobile, mouseX, mouseY]);
 
   const goToNextHistory = () => {
     exitDirectionRef.current = 1;
@@ -217,6 +254,7 @@ export const AboutSection = () => {
         ref={containerRef}
         className="relative w-full md:w-screen h-[500px] md:h-[600px] mt-16 -mt-32 md:mt-16 mb-[-220px] md:mb-0 overflow-visible md:overflow-hidden left-0 md:left-1/2 md:-translate-x-1/2 z-0"
       >
+        <div ref={imagesContainerRef} className="absolute inset-0">
         <div className="absolute inset-0 z-0 flex items-start overflow-hidden pt-0">
           <motion.div
             className="flex whitespace-nowrap"
@@ -263,27 +301,34 @@ export const AboutSection = () => {
           </motion.div>
         </div>
 
-        <div className="absolute inset-0 z-10">
-          <div className="relative w-full h-full scale-150 md:scale-100">
-            <Image
-              src="/sobrep01.webp"
-              alt="Sobre imagem 1"
-              fill
-              className="object-contain"
-              sizes="100vw"
-            />
+          <div className="absolute inset-0 z-10 md:inset-0 top-[-100px] md:top-0">
+            <motion.div 
+              className="relative w-full h-full scale-150 md:scale-100"
+              style={{ x: x1, y: y1 }}
+            >
+              <Image
+                src="/sobrep01.webp"
+                alt="Sobre imagem 1"
+                fill
+                className="object-contain"
+                sizes="100vw"
+              />
+            </motion.div>
           </div>
-        </div>
-        
-        <div className="absolute inset-0 z-20">
-          <div className="relative w-full h-full scale-150 md:scale-100">
-            <Image
-              src="/sobrep2.webp"
-              alt="Sobre imagem 2"
-              fill
-              className="object-contain"
-              sizes="100vw"
-            />
+          
+          <div className="absolute inset-0 z-20 md:inset-0 top-[-100px] md:top-0">
+            <motion.div 
+              className="relative w-full h-full scale-150 md:scale-100"
+              style={{ x: x2, y: y2 }}
+            >
+              <Image
+                src="/sobrep2.webp"
+                alt="Sobre imagem 2"
+                fill
+                className="object-contain"
+                sizes="100vw"
+              />
+            </motion.div>
           </div>
         </div>
       </motion.div>
