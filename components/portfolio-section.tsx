@@ -391,7 +391,7 @@ export const PortfolioSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mt-8">
               <motion.a
-                href="https://wa.me/5543988082844"
+                href="https://wa.me/5542998690096"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0 }}

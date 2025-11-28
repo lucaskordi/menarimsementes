@@ -12,7 +12,7 @@ export const WhatsAppButton = () => {
       transition={{ delay: 0.5, type: "spring" }}
     >
       <Link
-        href="https://wa.me/5543988082844"
+        href="https://wa.me/5542998690096"
         target="_blank"
         rel="noopener noreferrer"
         className="block"

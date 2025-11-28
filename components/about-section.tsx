@@ -168,13 +168,25 @@ export const AboutSection = () => {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="text-left"
+                      className="text-left relative"
                     >
+                      {currentHistoryIndex !== 0 && (
+                        <div className="absolute inset-0 -m-4 md:-m-8 z-0 overflow-hidden rounded-lg">
+                          <Image
+                            src="/seumenarimbg.png"
+                            alt="Background"
+                            fill
+                            className="object-cover opacity-20 blur-sm md:object-top"
+                            sizes="(max-width: 768px) 100vw, 600px"
+                          />
+                        </div>
+                      )}
+                      <div className="relative z-10">
                       <div className="flex items-center gap-3 md:gap-4 mb-3 flex-wrap">
                         {currentHistoryIndex === 0 && (
                           <div className="relative w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
                             <Image
-                              src="/memory.webp"
+                              src="/seumenarim.png"
                               alt="Memória"
                               fill
                               className="object-cover rounded"
@@ -200,6 +212,7 @@ export const AboutSection = () => {
                       <p className="text-gray-200 text-base md:text-lg leading-relaxed">
                         {historyItems[currentHistoryIndex].content}
                       </p>
+                      </div>
                     </motion.div>
                   </AnimatePresence>
                 </div>

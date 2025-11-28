@@ -81,7 +81,7 @@ export const ContatoSection = () => {
                 <h3 className="text-xl font-bold text-[#16323d] mb-2">
                   {card.title}
                 </h3>
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-6 whitespace-pre-line">
                   {card.contact}
                 </p>
                 <motion.button
@@ -214,9 +214,9 @@ const contactCards: ContactCard[] = [
       </svg>
     ),
     title: "Ligue para nós",
-    contact: "+55 43 98808-2844",
+    contact: "Escritório\n(42) 3232-3238\n(42) 99869-0096\n\nComercial\n(43) 98808-2844",
     buttonText: "Ligar Agora",
-    buttonAction: () => { window.location.href = "tel:+5543988082844"; },
+    buttonAction: () => { window.location.href = "tel:+554232323238"; },
   },
   {
     icon: (
@@ -225,7 +225,7 @@ const contactCards: ContactCard[] = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-    title: "Visite nossas fazendas",
+    title: "Localização Fazendas",
     contact: "Fazenda Vó Anna e Fazenda 5M",
     buttonText: "Ver Localização",
     buttonAction: () => {},
