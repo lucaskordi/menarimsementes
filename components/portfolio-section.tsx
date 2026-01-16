@@ -326,6 +326,16 @@ export const PortfolioSection = () => {
                                 <span className="mr-2 text-[#d5b14f] font-bold">•</span>
                                 <span className="text-[#d5b14f] font-bold">BRS Estilo</span>
                               </li>
+                              <li className="flex items-center">
+                                <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                                <span className="text-[#d5b14f] font-bold">BRS FC Elo 424</span>
+                                <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
+                              </li>
+                              <li className="flex items-center">
+                                <span className="mr-2 text-[#d5b14f] font-bold">•</span>
+                                <span className="text-[#d5b14f] font-bold">BRS FC Elo 429</span>
+                                <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
+                              </li>
                             </ul>
                           </div>
                           <div className="space-y-2">
@@ -367,7 +377,6 @@ export const PortfolioSection = () => {
                             <li className="flex items-center">
                               <span className="mr-2 text-[#d5b14f] font-bold">•</span>
                               <span className="text-[#d5b14f] font-bold">Trigo Morisco IPR 91 Baili</span>
-                              <span className="ml-2 px-2 py-0.5 bg-white text-[#16323d] text-xs font-semibold rounded">LANÇAMENTO</span>
                             </li>
                           </ul>
                         </div>

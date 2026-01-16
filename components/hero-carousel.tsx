@@ -8,7 +8,7 @@ const heroContent = [
   {
     image: "/hero1.webp",
     title: "Tradição e Compromisso com a Qualidade",
-    description: "Com 28 anos de experiência no mercado agrícola, cultivamos sementes de excelência que representam o melhor da tradição rural aliado à tecnologia moderna. Nossa dedicação à qualidade garante resultados superiores em cada safra.",
+    description: "Com 29 anos de experiência no mercado agrícola, cultivamos sementes de excelência que representam o melhor da tradição rural aliado à tecnologia moderna. Nossa dedicação à qualidade garante resultados superiores em cada safra.",
   },
   {
     image: "/hero2.webp",

@@ -61,7 +61,7 @@ export const Footer = () => {
     if (isTrabalheConoscoPage) {
       window.location.href = "/";
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

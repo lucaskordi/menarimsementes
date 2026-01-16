@@ -26,7 +26,7 @@ export const Header = () => {
     if (pathname === "/trabalhe-conosco" || pathname !== "/") {
       window.location.href = "/";
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

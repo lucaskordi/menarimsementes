@@ -126,8 +126,8 @@ export const SeedToHarvestSection = () => {
                 }}
                 transition={{ duration: 0.3 }}
                 className="hidden md:flex flex-col items-center gap-2"
-              >
-                <span className="text-white text-2xl md:text-3xl font-bold">Via QR Code</span>
+            >
+              <span className="text-white text-2xl md:text-3xl font-bold">Via QR Code</span>
                 <span className="text-white text-xs md:text-sm opacity-80">Passe o mouse e saiba mais</span>
               </motion.div>
             </motion.div>
@@ -203,8 +203,8 @@ export const SeedToHarvestSection = () => {
                 }}
                 transition={{ duration: 0.3 }}
                 className="hidden md:flex flex-col items-center gap-2"
-              >
-                <span className="text-white text-2xl md:text-3xl font-bold">Via Lote e NF</span>
+            >
+              <span className="text-white text-2xl md:text-3xl font-bold">Via Lote e NF</span>
                 <span className="text-white text-xs md:text-sm opacity-80">Passe o mouse e saiba mais</span>
               </motion.div>
             </motion.div>

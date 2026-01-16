@@ -132,7 +132,7 @@ export const AboutSection = () => {
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              28 Anos de Experiência em Sementes e Compromisso com o Agricultor
+              29 Anos de Experiência em Sementes e Compromisso com o Agricultor
             </h2>
           </motion.div>
 

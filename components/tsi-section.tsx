@@ -51,8 +51,8 @@ export const TsiSection = () => {
                 <div>
                   <div className="flex items-center gap-4 mb-6">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                      TSI
-                    </h2>
+            TSI
+          </h2>
                     <div className="relative w-24 md:w-32 h-12 md:h-16">
                       <Image
                         src="/Logo.png"
